@@ -88,9 +88,68 @@ abline(v=200,lty=3,col="darkorange",lwd=2)
 text(x=200,y=300,labels="Região \nSalmonídeo",pos=2, col="darkorange")
 text(x=200,y=400,labels="Região \nCiprinídeo",pos=4, col="darkorange")
 
-
 #salvar
 dev.off()
 
+#----------------------------------------------------
+#boxplot ou diagrama de caixa
+#box-and-whisker
+par(mar=c(3,3,1,1))
+boxplot(env$nit,env$amm,env$oxy,names=c("Nitrato","Amônio","Oxigênio"),
+        col=c("pink","orange","lightblue"),las=1)
+boxplot(env$nit,env$amm,names=c("Nitrato","Amônio"),
+        col=c("pink","orange"),las=1,outline=FALSE)
+
+jpeg("~/EasyR/minicurso/VariaveisRegiao.jpg",width = 200,height = 60, bg="white", res=300,
+     units="mm")
+par(mfrow=c(1,3),mar=c(3,4.5,1,1))
+#nitrato em funcao da regiao
+boxplot(nit ~ regiao,data=env,col="pink",ylab="Nitrato (mg/L)",las=1)
+boxplot(amm ~ regiao,data=env,col="orange",ylab="Amônio (mg/L)",las=1)
+boxplot(oxy ~ regiao,data=env,col="lightblue",ylab="Oxigênio (mg/L)",las=1)
+dev.off()
+
+#análises paramétricas e não-paramétricas
+#distribuição normal dos erros da variável
+
+n100 <- rnorm(n=100)
+n1k <- rnorm(n=1000)
+n10k <- rnorm(n=10000)
+
+#histograma de frequencia e grafico quantile-quantile
+#distribuição normal - tende a reta da distrib teorica
+#caso contrario - formato S ou de uma banana
+
+x11()
+par(mfcol=c(2,3),mar=c(4.5,4.5,3,1),cex.lab=1.6,cex.axis=1.4,
+    cex.main=1.8)
+hist(n100,col="gray",main="Histograma n=100", xlab = "Dados simulados")
+qqnorm(n100,pch=21,col="black",bg="gray",cex=1.6)
+qqline(n100,lty=2)
+hist(n1k,col="gray",main="Histograma n=1000", xlab = "Dados simulados")
+qqnorm(n1k,pch=21,col="black",bg="gray",cex=1.6)
+qqline(n1k,lty=2)
+hist(n10k,col="gray",main="Histograma n=10000", xlab = "Dados simulados")
+qqnorm(n10k,pch=21,col="black",bg="gray",cex=1.6)
+qqline(n10k,lty=2)
+
+jpeg("~/EasyR/minicurso/Normalidade.jpg",width = 400,height = 200, bg="white", res=300,
+     units="mm")
+par(mfcol=c(2,4),mar=c(5,4.5,3,1),cex.lab=1.6,cex.axis=1.4,
+    cex.main=1.8)
+hist(env$nit,col="pink",main="Histograma de Nitrato", xlab = "Nitrato (mg/L)")
+qqnorm(env$nit,pch=21,col="black",bg="pink",cex=1.6)
+qqline(env$nit,lty=2)
+hist(env$amm,col="orange",main="Histograma de Amônio", xlab = "Amônio (mg/L)")
+qqnorm(env$amm,pch=21,col="black",bg="orange",cex=1.6)
+qqline(env$amm,lty=2)
+hist(env$oxy,col="gray",main="Histograma de Oxigênio", xlab = "Oxigênio (mg/L)")
+qqnorm(env$oxy,pch=21,col="black",bg="gray",cex=1.6)
+qqline(env$oxy,lty=2)
+
+hist(n100,col="gray",main="Histograma n=100", xlab = "Dados simulados")
+qqnorm(n100,pch=21,col="black",bg="gray",cex=1.6)
+qqline(n100,lty=2)
+dev.off()
 
 
