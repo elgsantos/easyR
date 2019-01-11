@@ -48,7 +48,16 @@ max(env$nit)
 
 #análise exploratória para identificar a região
 #utilizar oxigênio, nitrato e amônio x das(km)
-#altidute(m) x das (km)
+#altitute(m) x das (km)
+
+env$zona <- rep(x="Truta",times=nrow(env))
+env$zona[env$das>100] <- "Grayling"
+env$zona[env$das>200] <- "Barbo"
+env$zona[env$das>300] <- "Brema"
+
+env$regiao <- rep("Salmonideo", times=nrow(env))
+env$regiao[env$das>200] <- "Ciprinideo"
+
 
 #funcao para salvar figura
 jpeg("~/EasyR/minicurso/Variaveis.jpg",width = 200,height = 200, bg="white", res=300,
@@ -77,10 +86,11 @@ legend("topright",legend=c("Truta","Grayling","Barbo","Brema"),
        pt.cex=1.2,title="Zonas")
 abline(v=200,lty=3,col="darkorange",lwd=2)
 text(x=200,y=300,labels="Região \nSalmonídeo",pos=2, col="darkorange")
-text(x=200,y=400,labels="Região \nCiprinídeo",pos=2, col="darkorange")
-
+text(x=200,y=400,labels="Região \nCiprinídeo",pos=4, col="darkorange")
 
 
 #salvar
 dev.off()
+
+
 
