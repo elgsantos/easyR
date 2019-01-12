@@ -152,4 +152,18 @@ qqnorm(n100,pch=21,col="black",bg="gray",cex=1.6)
 qqline(n100,lty=2)
 dev.off()
 
+#teste de normalidade Shapiro-Wilk
+#hipótese nula (h0) é que os dados da variável possuem distribuição normal
+#prob p>0.05, h0 é aceita, caso contrário p<0.05 rejeita h0 (não normais)
 
+shapiro.test(n100)
+#p>0.05 aceita h0
+
+shapiro.test(env$nit)
+#p<0.05 rejeita h0 (não é normal)
+
+shapiro.test(env$amm)
+#p<0.001 rejeita H0
+
+shapiro.test(env$oxy)
+#p>0.05 aceita H0
