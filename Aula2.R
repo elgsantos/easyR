@@ -119,3 +119,12 @@ media <- c(mean(nit), mean(amm), mean(oxy))
 media
 desvio
 erroPad <- c(sd(nit)/sqrt(length(nit)),sd(amm)/sqrt(length(amm)),sd(oxy)/sqrt(length(oxy)))
+erroPad
+cv
+CIs <- media + 1.96 * erroPad
+CIs
+CIi <- media - 1.96 * erroPad
+CIi
+tabela <- data.frame(media=media, dp=desvio, ep=erroPad,
+                     CV=cv, ICs=CIs, ICi=CIi)
+tabela
