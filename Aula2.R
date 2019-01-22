@@ -128,3 +128,17 @@ CIi
 tabela <- data.frame(media=media, dp=desvio, ep=erroPad,
                      CV=cv, ICs=CIs, ICi=CIi)
 tabela
+row.names(tabela) <- c("nitrato","amonio","oxigenio")
+tabela
+
+#Como saber, por exemplo qual a media do oxigenio para uma determinada região
+env$regiao
+env$zona
+
+x11()
+par(mfrow=c(2,1),mar=c(3,4.5,1,1))
+boxplot(oxy ~ regiao, data=env, col="lightblue", ylab="Oxigênio (mg/L)")
+boxplot(oxy ~ zona, data=env, col="lightblue", ylab="Oxigênio (mg/L)")
+
+tapply(X=env$oxy, INDEX=env$regiao, FUN = mean)
+tapply(X=env$oxy, INDEX=env$zona, FUN = mean)
