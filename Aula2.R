@@ -142,3 +142,21 @@ boxplot(oxy ~ zona, data=env, col="lightblue", ylab="Oxigênio (mg/L)")
 
 tapply(X=env$oxy, INDEX=env$regiao, FUN = mean)
 tapply(X=env$oxy, INDEX=env$zona, FUN = mean)
+
+tapply(X=env$oxy, INDEX=env$regiao, FUN = length)#13 | 17 desenho amostral desbalanceado
+tapply(X=env$oxy, INDEX=env$zona, FUN = length)
+
+tapply(env$oxy, list(env$regiao,env$zona), mean)
+#desenho amostral aninhado (nested)
+# salmonídeo contem 2 zonas e ciprinideo contem 2 zonas diferentes
+# Regiao:   Salmonideo      Ciprinideo
+# Zona:   Truta Grayling    Brema Barbo  #estao aninhados nas regioes
+
+#tabela dinamica
+aggregate(env[,9:11],list(regiao=env$regiao),mean)
+aggregate(env[,9:11],list(zona=env$zona),mean)
+#juntando
+aggregate(env[,9:11],list(regiao=env$regiao,zona=env$zona),mean)
+
+tabela2 <- aggregate(env[,9:11],list(zona=env$zona),mean)
+tabela2
