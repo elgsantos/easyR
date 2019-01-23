@@ -160,3 +160,14 @@ aggregate(env[,9:11],list(regiao=env$regiao,zona=env$zona),mean)
 
 tabela2 <- aggregate(env[,9:11],list(zona=env$zona),mean)
 tabela2
+
+# regiao: Ciprinídeo e Salmonídeo
+par(mfrow=c(1,1))
+barplot(tapply(env$oxy, env$regiao, var), ylim=c(0,5))
+
+#teste de Fisher = compara duas variancias
+#hipotese nula de que as variancias nao diferem
+
+var.test(env$oxy[env$regiao=="Ciprinideo"],
+         env$oxy[env$regiao=="Salmonideo"])
+#aceita hipotese nula p-value < 0.5
