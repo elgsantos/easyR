@@ -190,3 +190,15 @@ wilcox.test(env$nit[env$regiao=="Ciprinideo"],
 wilcox.test(env$amm[env$regiao=="Ciprinideo"],
             env$amm[env$regiao=="Salmonideo"])
 #rejeita a H0, aceita Ha=medias sao diferentes
+
+#oxy apresentou distribuicao normal
+#teste t Student = parametrico
+
+jpeg("Boxplot_oxy_notch.jpg",width = 100, height = 80, bg="white",
+     res = 300, unit="mm")
+par(mar=c(3,4.5,1,1))
+boxplot(oxy ~ regiao, data = env, notch=T, col="lightblue", ylab="Oxigênio (mg/L)")
+dev.off()
+t.test(env$oxy[env$regiao=="Ciprinideo"],
+        env$oxy[env$regiao=="Salmonideo"])
+#rejeita H0, aceita Ha
