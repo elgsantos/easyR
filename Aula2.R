@@ -171,3 +171,22 @@ barplot(tapply(env$oxy, env$regiao, var), ylim=c(0,5))
 var.test(env$oxy[env$regiao=="Ciprinideo"],
          env$oxy[env$regiao=="Salmonideo"])
 #aceita hipotese nula p-value < 0.5
+
+#Teste de Shapiro-Wilk - normalidade
+#nitrato e amonio - nao apresentaram distribuicao normal
+#Teste de Wilcoxon - nao parametrico
+dados_wil <- aggregate(env[,9:10],list(regiao=env$regiao),mean)
+#ajuste coluna
+row.names(dados_wil) <- dados_wil[,1]
+dados_wil <- dados_wil[,-1]
+dados_wil <- as.matrix(dados_wil)
+
+barplot(height = dados_wil,beside = T,ylim=c(0,3),legend=T)
+
+wilcox.test(env$nit[env$regiao=="Ciprinideo"],
+            env$nit[env$regiao=="Salmonideo"])
+
+#rejeita a H0, aceita Ha=medias amm sao diferentes
+wilcox.test(env$amm[env$regiao=="Ciprinideo"],
+            env$amm[env$regiao=="Salmonideo"])
+#rejeita a H0, aceita Ha=medias sao diferentes
