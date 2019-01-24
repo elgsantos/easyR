@@ -202,3 +202,29 @@ dev.off()
 t.test(env$oxy[env$regiao=="Ciprinideo"],
         env$oxy[env$regiao=="Salmonideo"])
 #rejeita H0, aceita Ha
+
+#correlacao entre variaveis: Pearson e Spearman
+#valor -1 = correlacao negativa
+#valor 1 = corr positiva
+#valor 0 = ausencia de correlacao
+#nao representa dependencia
+
+jpeg("Graf_correlacao.jpg",width = 260, height = 100, bg="white",
+     res = 300, unit="mm")
+par(mfrow=c(1,2),mar=c(4.5,4.5,1,4.5))
+plot(env$das,env$amm,type="l",xlab="Distância da fonte(km)",
+     ylab="Amônio (mg/L)",col="darkorange",lwd=2)
+par(new=T)#adicionar novo grafico
+plot(env$das,env$oxy,type="l",xlab="", ylab="",col="blue",
+     lwd=2, axes=F)
+axis(side = 4, col="blue", col.axis="blue")
+mtext(text="Oxigênio (mg/L)", side = 4, padj=4, col="blue")
+
+plot(env$das,env$nit,type="l",xlab="Distância da fonte(km)",
+     ylab="Nitrato (mg/L)",col="red",lwd=2)
+par(new=T)#adicionar novo grafico
+plot(env$das,env$amm,type="l",xlab="", ylab="",col="darkorange",
+     lwd=2, axes=F)
+axis(side = 4, col="darkorange", col.axis="darkorange")
+mtext(text="Amônio (mg/L)", side = 4, padj=4, col="darkorange")
+dev.off()
