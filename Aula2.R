@@ -228,3 +228,8 @@ plot(env$das,env$amm,type="l",xlab="", ylab="",col="darkorange",
 axis(side = 4, col="darkorange", col.axis="darkorange")
 mtext(text="Amônio (mg/L)", side = 4, padj=4, col="darkorange")
 dev.off()
+
+cor.test(env$oxy,env$amm, method = "pearson")
+#negativamente correlacionadas
+cor.test(env$nit,env$amm, method = "spearman")#spearman - nao parametrico
+#correlacionados
