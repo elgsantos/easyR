@@ -233,3 +233,7 @@ cor.test(env$oxy,env$amm, method = "pearson")
 #negativamente correlacionadas
 cor.test(env$nit,env$amm, method = "spearman")#spearman - nao parametrico
 #correlacionados
+
+write.table(x=env, file="env_aula2.csv",row.names = F,sep=",") #remove numeracao das linhas
+
+names(read.csv("env_aula2.csv",header=T,sep=",",dec="."))
