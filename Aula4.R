@@ -1,0 +1,2 @@
+setwd("~/EasyR/minicurso")
+getwd()
