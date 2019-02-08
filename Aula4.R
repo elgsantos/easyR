@@ -103,3 +103,6 @@ axis(3,col="orange",col.axis="orange")
 mtext(expression(paste("Vazão média (m"^3,"s"^-1,")")),side=3,padj=-2.2, 
       col="orange") 
 abline(a=mod2$coeff[1],b=mod2$coeff[3],lwd=2,col="orange") 
+
+par(mfrow=c(2,2)) 
+plot(mod2) 
