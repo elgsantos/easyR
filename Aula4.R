@@ -94,3 +94,12 @@ mod2 <- lm(nit ~ alt+deb, data=env)
 summary(mod2)
 anova(mod2)
 mod2$coefficients
+
+plot(env$alt,env$nit,xlab="Altitude (m)",ylab="Nitrato (mg/L)",type="n") 
+abline(a=mod2$coeff[1],b=mod2$coeff[2],lwd=2,col="red") 
+par(new=TRUE) 
+plot(env$deb,env$nit,xlab="",ylab="",type="n",axes=F) 
+axis(3,col="orange",col.axis="orange") 
+mtext(expression(paste("Vazão média (m"^3,"s"^-1,")")),side=3,padj=-2.2, 
+      col="orange") 
+abline(a=mod2$coeff[1],b=mod2$coeff[3],lwd=2,col="orange") 
